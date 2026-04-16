@@ -92,8 +92,7 @@ export default function ProjectsSection() {
           <div
             key={project.id}
             className="ps-card-wrap"
-            onClick={() => router.push(`/project/${project.slug}`)}
-          >
+onClick={() => router.push(`/project/${project.slug.toLowerCase()}`)}          >
             <TiltedCard
               imageSrc={project.cover_image}
               altText={project.name}

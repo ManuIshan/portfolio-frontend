@@ -32,7 +32,7 @@ export default function ProjectDetailPage() {
     if (!slug) return;
     async function fetchProject() {
       try {
-        const res  = await fetch(`${API_URL}projects/${slug}/`);
+        const res  = await fetch(`${API_URL}projects/${slug.toLowerCase()}/`)
         const data = await res.json();
         setProject(data);
       } catch (e) {
