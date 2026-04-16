@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { API_URL } from "@/lib/api";
 import "./WorkExperienceCompo2.css";
 
+/* ───────── Reveal Text ───────── */
 function RevealText({ children }) {
   const ref = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -47,6 +47,7 @@ function RevealText({ children }) {
   );
 }
 
+/* ───────── Experience Item ───────── */
 function ExperienceItem({ index, role, company, period, description }) {
   const [open, setOpen] = useState(false);
   const num = String(index + 1).padStart(2, "0");
@@ -74,38 +75,29 @@ function ExperienceItem({ index, role, company, period, description }) {
   );
 }
 
+/* ───────── Main Component ───────── */
 export default function WorkExperienceCompo2() {
-  const [experiences, setExperiences] = useState([]);
-
-  useEffect(() => {
-    fetch(`${API_URL}experience/`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setExperiences(data);
-      })
-      .catch(() => {
-        setExperiences([
-          {
-            id: 1,
-            role: "Full Stack Developer Internship",
-            company: "Druv Entrepreneurs Hub, Kochi",
-            period: "2026 Jan - April 2026",
-            description: "Built and deployed end-to-end web applications using React, Next.js, Django, and REST APIs, serving clients across diverse industries.d-to-end web applications using React, Next.js, Django, and REST APIs for clients across various industries."
-          },
-          {
-            id: 2,
-            role: "Full Stack Developer Intern",
-            company: "Techolas Technologies, Calicut",
-            period: "2025 – 2026",
-            description: "Gained hands-on experience in full-stack development, contributing to both frontend and backend enhancements."
-          },
-        ]);
-      });
-  }, []);
+  const experiences = [
+    {
+      id: 1,
+      role: "Full Stack Developer Internship",
+      company: "Druv Entrepreneurs Hub, Kochi",
+      period: "2026 Jan – Apr 2026",
+      description:
+        "Built and deployed end-to-end web applications using React, Next.js, Django, and REST APIs, serving clients across diverse industries.",
+    },
+    {
+      id: 2,
+      role: "Full Stack Developer Intern",
+      company: "Techolas Technologies, Calicut",
+      period: "2025 – 2026",
+      description:
+        "Gained hands-on experience in full-stack development, contributing to both frontend and backend enhancements.",
+    },
+  ];
 
   return (
     <section id="experience" className="we2">
-
       {/* Top bar */}
       <div className="we2-topbar">
         <span className="we2-label">/ Work Experience</span>
@@ -132,7 +124,6 @@ export default function WorkExperienceCompo2() {
           />
         ))}
       </div>
-
     </section>
   );
 }
