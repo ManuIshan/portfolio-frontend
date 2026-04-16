@@ -32,8 +32,9 @@ export default function ProjectDetailPage() {
     if (!slug) return;
     async function fetchProject() {
       try {
-        const res  = await fetch(`${API_URL}projects/${slug.toLowerCase()}/`)
-        const data = await res.json();
+const res = await fetch(
+  `https://portfolio-backend-dykc.onrender.com/api/projects/${slug.toLowerCase()}/`
+);        const data = await res.json();
         setProject(data);
       } catch (e) {
         console.error(e);
