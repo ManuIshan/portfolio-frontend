@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import TrueFocus from "@/src/component/TrueFocus";
-import { API_URL } from "@/lib/api";
 import "./AboutCompo1.css";
 
+/* ───────── Reveal Text ───────── */
 function RevealText({ children }) {
   const ref = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -48,6 +48,7 @@ function RevealText({ children }) {
   );
 }
 
+/* ───────── Counter ───────── */
 function Counter({ target, suffix = "+" }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -82,24 +83,12 @@ function Counter({ target, suffix = "+" }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+/* ───────── Main Component ───────── */
 export default function AboutCompo1() {
-  const [cv, setCv] = useState(null);
-
-  useEffect(() => {
-    fetch(`${API_URL}cv/`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) setCv(data[0]);
-        else if (data && data.file) setCv(data);
-      })
-      .catch((err) => console.error("CV fetch failed", err));
-  }, []);
-
   return (
     <section id="about" className="ac1">
 
       <div className="ac1-hero">
-
         {/* Name stacked center */}
         <div className="ac1-name-block">
           <h1 className="ac1-name">Manu</h1>
@@ -109,7 +98,6 @@ export default function AboutCompo1() {
         <div className="ac1-photo-wrap">
           <img src="/hero1.jpg" alt="Manu Ishan" className="ac1-photo" />
         </div>
-
       </div>
 
       <div className="ac1-meta-row">
@@ -130,25 +118,23 @@ export default function AboutCompo1() {
         </h2>
       </div>
 
-      {cv && (
-        <div className="hh3-cv-wrap">
-          <button
-            className="hh3-cv-btn"
-            onClick={() => window.open(cv.file, "_blank")}
-          >
-            <TrueFocus
-              text="View CV"
-              manualMode={false}
-              blurAmount={0.5}
-              borderColor="rgb(255, 255, 255)"
-              glowColor="rgba(255,255,255,0.2)"
-            />
-          </button>
-        </div>
-      )}
+      {/* CV Button */}
+      <div className="hh3-cv-wrap">
+        <button
+          className="hh3-cv-btn"
+          onClick={() => window.open("/cv.pdf", "_blank")}
+        >
+          <TrueFocus
+            text="View CV"
+            manualMode={false}
+            blurAmount={0.5}
+            borderColor="rgb(255, 255, 255)"
+            glowColor="rgba(255,255,255,0.2)"
+          />
+        </button>
+      </div>
 
       <div className="ac1-stats">
-
         <div className="ac1-stat">
           <span className="ac1-stat-num"><Counter target={1} suffix="+" /></span>
           <p className="ac1-stat-title">Year of Experience</p>
@@ -170,7 +156,6 @@ export default function AboutCompo1() {
           <p className="ac1-stat-title">Technologies Mastered</p>
           <p className="ac1-stat-sub">Full stack ready</p>
         </div>
-
       </div>
 
     </section>
