@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import TrueFocus from "@/src/component/TrueFocus";
 import LogoLoop from "@/src/component/LogoLoop";
-import { API_URL } from "@/lib/api";
 import "./HomeHero3.css";
 
 import {
@@ -46,7 +45,13 @@ function RevealText({ children }) {
       {words.map((word, i) => {
         const wp = Math.min(1, Math.max(0, progress * total - i));
         return (
-          <span key={i} style={{ color: `rgba(255,255,255,${0.1 + wp * 0.85})`, transition: "0.2s" }}>
+          <span
+            key={i}
+            style={{
+              color: `rgba(255,255,255,${0.1 + wp * 0.85})`,
+              transition: "0.2s"
+            }}
+          >
             {word}{" "}
           </span>
         );
@@ -61,9 +66,9 @@ const services = [
     title: "Frontend Development",
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="20" stroke="white" strokeWidth="2" fill="none" opacity="0.7"/>
-        <path d="M4 24 Q14 8 24 24 Q34 40 44 24" stroke="white" strokeWidth="2" fill="none" opacity="0.7"/>
-        <path d="M4 24 Q14 40 24 24 Q34 8 44 24" stroke="white" strokeWidth="2" fill="none" opacity="0.7"/>
+        <circle cx="24" cy="24" r="20" stroke="white" strokeWidth="2" opacity="0.7"/>
+        <path d="M4 24 Q14 8 24 24 Q34 40 44 24" stroke="white" strokeWidth="2" opacity="0.7"/>
+        <path d="M4 24 Q14 40 24 24 Q34 8 44 24" stroke="white" strokeWidth="2" opacity="0.7"/>
       </svg>
     ),
   },
@@ -73,7 +78,7 @@ const services = [
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
         <polyline points="8,14 24,6 40,14 40,34 24,42 8,34 8,14" stroke="white" strokeWidth="2" fill="none" strokeLinejoin="round" opacity="0.7"/>
-        <polyline points="8,14 24,22 40,14" stroke="white" strokeWidth="2" fill="none" opacity="0.7"/>
+        <polyline points="8,14 24,22 40,14" stroke="white" strokeWidth="2" opacity="0.7"/>
         <line x1="24" y1="22" x2="24" y2="42" stroke="white" strokeWidth="2" opacity="0.7"/>
       </svg>
     ),
@@ -83,8 +88,8 @@ const services = [
     title: "Web Hosting",
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-        <rect x="6" y="10" width="36" height="10" rx="2" stroke="white" strokeWidth="2" fill="none" opacity="0.7"/>
-        <rect x="6" y="28" width="36" height="10" rx="2" stroke="white" strokeWidth="2" fill="none" opacity="0.7"/>
+        <rect x="6" y="10" width="36" height="10" rx="2" stroke="white" strokeWidth="2" opacity="0.7"/>
+        <rect x="6" y="28" width="36" height="10" rx="2" stroke="white" strokeWidth="2" opacity="0.7"/>
         <circle cx="38" cy="15" r="2" fill="white" opacity="0.7"/>
         <circle cx="38" cy="33" r="2" fill="white" opacity="0.7"/>
       </svg>
@@ -104,33 +109,15 @@ const services = [
 ];
 
 const logos = [
-  { node: <FaGithub /> },
-  { node: <FaReact /> },
-  { node: <SiNextdotjs /> },
-  { node: <FaPython /> },
-  { node: <FaJs /> },
-  { node: <FaBootstrap /> },
-  { node: <SiDjango /> },
-  { node: <SiPostgresql /> },
-  { node: <SiMysql /> },
-  { node: <SiTailwindcss /> },
-  { node: <SiVercel /> },
-  { node: <FaCss3Alt /> },
-  { node: <FaHtml5 /> },
-  { node: <SiPostman /> },
+  { node: <FaGithub /> }, { node: <FaReact /> }, { node: <SiNextdotjs /> },
+  { node: <FaPython /> }, { node: <FaJs /> }, { node: <FaBootstrap /> },
+  { node: <SiDjango /> }, { node: <SiPostgresql /> }, { node: <SiMysql /> },
+  { node: <SiTailwindcss /> }, { node: <SiVercel /> }, { node: <FaCss3Alt /> },
+  { node: <FaHtml5 /> }, { node: <SiPostman /> },
 ];
 
 /* ───────── Main ───────── */
 export default function HomeHero3() {
-  const [cv, setCv] = useState(null);
-
-  useEffect(() => {
-    fetch(`${API_URL}cv/`)
-      .then(res => res.json())
-      .then(data => { if (Array.isArray(data) && data.length > 0) setCv(data[0]); })
-      .catch(err => console.error(err));
-  }, []);
-
   return (
     <section className="hh3">
       <div className="hh3-content">
@@ -165,8 +152,6 @@ export default function HomeHero3() {
                 <div className="hh3-card-icon">{s.icon}</div>
                 <span className="hh3-card-bignum">{s.num}</span>
               </div>
-
-              {/* bottom: title + divider */}
               <div className="hh3-card-bottom">
                 <p className="hh3-card-title">{s.title}</p>
                 <div className="hh3-card-foot">
@@ -191,22 +176,20 @@ export default function HomeHero3() {
         </div>
 
         {/* CV BUTTON */}
-        {cv && (
-          <div className="hh3-cv-wrap">
-            <button
-              className="hh3-cv-btn"
-              onClick={() => window.open(cv.file, "_blank")}
-            >
-              <TrueFocus
-                text="View CV"
-                manualMode={false}
-                blurAmount={0.5}
-                borderColor="rgb(255, 255, 255)"
-                glowColor="rgba(255,255,255,0.2)"
-              />
-            </button>
-          </div>
-        )}
+        <div className="hh3-cv-wrap">
+          <button
+            className="hh3-cv-btn"
+            onClick={() => window.open("/cv.pdf", "_blank")}
+          >
+            <TrueFocus
+              text="View CV"
+              manualMode={false}
+              blurAmount={0.5}
+              borderColor="rgb(255, 255, 255)"
+              glowColor="rgba(255,255,255,0.2)"
+            />
+          </button>
+        </div>
 
       </div>
     </section>

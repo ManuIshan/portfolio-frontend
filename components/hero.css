@@ -281,7 +281,8 @@
   .hero-right   { font-size: 11px; bottom: 224px !important; top: auto !important; right: 1.25rem; }
   .location { align-items: flex-end; justify-content: flex-end; }
   .hero-title h1 { font-size: clamp(70px, 20vw, 120px); }
-  .intro, .surname { font-size: 14px; }
+  .intro, .surname { font-size: 14px;
+   }
   .hero-status {  left: 20px; }
   
   .hero-menu-overlay {

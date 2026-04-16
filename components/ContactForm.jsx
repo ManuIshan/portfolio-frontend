@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { API_URL } from "@/lib/api";
 import "./ContactForm.css";
 
 export default function ContactForm() {
@@ -22,47 +21,20 @@ export default function ContactForm() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
 
-    try {
-      const res = await fetch(`${API_URL}contact/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const responseData = await res.json();
-
-      if (res.ok) {
-        setStatus({
-          type: "success",
-          message: responseData.message || "Message sent! I'll get back to you soon.",
-        });
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        const errorMessage =
-          responseData.detail ||
-          responseData.errors?.message?.[0] ||
-          "Failed to send message. Please try again.";
-        setStatus({
-          type: "error",
-          message: errorMessage,
-        });
-      }
-    } catch (error) {
-      console.error("Contact form error:", error);
+    // Simulate sending without backend
+    setTimeout(() => {
       setStatus({
-        type: "error",
-        message: `Network error: ${error.message}. Make sure the backend is reachable via ${API_URL}`,
+        type: "success",
+        message: "Message sent! I'll get back to you soon.",
       });
-    } finally {
+      setFormData({ name: "", email: "", message: "" });
       setLoading(false);
-    }
+    }, 1500);
   };
 
   return (

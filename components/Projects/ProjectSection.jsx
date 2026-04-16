@@ -2,12 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import TiltedCard from "@/src/component/TiltedCard";
 import StarBorder from "@/src/component/StarBorder";
-import { API_URL } from "@/lib/api";
 import "./ProjectSection.css";
 
+// Scroll reveal text component
 function RevealText({ children }) {
   const ref = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -16,11 +15,11 @@ function RevealText({ children }) {
     const el = ref.current;
     if (!el) return;
     const onScroll = () => {
-      const rect  = el.getBoundingClientRect();
-      const wh    = window.innerHeight;
+      const rect = el.getBoundingClientRect();
+      const wh = window.innerHeight;
       const start = wh * 0.9;
-      const end   = wh * 0.15;
-      const raw   = (start - rect.top) / (start - end);
+      const end = wh * 0.15;
+      const raw = (start - rect.top) / (start - end);
       setProgress(Math.min(1, Math.max(0, raw)));
     };
     onScroll();
@@ -51,32 +50,46 @@ function RevealText({ children }) {
   );
 }
 
+// Project dataset
+const projects = [
+  {
+    id: 1,
+    name: "Gym Guide",
+    year: 2025,
+    slug: "gym-guide",
+    cover_image: "/gymguide.png",
+  },
+  {
+    id: 2,
+    name: "Artist",
+    year: 2026,
+    slug: "artist",
+    cover_image: "/artist.png",
+  },
+  {
+    id: 3,
+    name: "Speako",
+    year: 2026,
+    slug: "speako",
+    cover_image: "/speako.png",
+  },
+  {
+    id: 4,
+    name: "Hajj Haven",
+    year: 2026,
+    slug: "hajj-haven",
+    cover_image: "/hajjhaven.png",
+  },
+];
+
 export default function ProjectsSection() {
-  const [projects, setProjects] = useState([]);
   const router = useRouter();
-
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        const res  = await fetch(`${API_URL}projects/?show_in_home=true`);
-        const data = await res.json();
-        setProjects(data);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    fetchProjects();
-  }, []);
-
-  if (projects.length === 0) return <section className="ps-section" />;
 
   return (
     <section className="ps-section">
-
       <div className="ps-top">
         <span className="ps-label">/ PROJECTS</span>
-                <span className="ps-label">N. 02</span>
-
+        <span className="ps-label">N. 04</span>
       </div>
 
       <div className="ps-headline">
@@ -92,7 +105,8 @@ export default function ProjectsSection() {
           <div
             key={project.id}
             className="ps-card-wrap"
-onClick={() => router.push(`/project/${project.slug.toLowerCase()}`)}          >
+            onClick={() => router.push(`/project/${project.slug}`)}
+          >
             <TiltedCard
               imageSrc={project.cover_image}
               altText={project.name}
@@ -126,7 +140,6 @@ onClick={() => router.push(`/project/${project.slug.toLowerCase()}`)}          >
           Explore All →
         </StarBorder>
       </div>
-
     </section>
   );
 }
