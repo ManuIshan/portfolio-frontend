@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import CustomGallery from "@/src/component/CustomGallery";
 import "./ProjectDetail.css";
 import ContactHero from "@/components/ContactHero";
+import { API_URL } from "@/lib/api";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -31,7 +32,7 @@ export default function ProjectDetailPage() {
     if (!slug) return;
     async function fetchProject() {
       try {
-        const res  = await fetch(`http://127.0.0.1:8000/api/projects/${slug}/`);
+        const res  = await fetch(`${API_URL}projects/${slug}/`);
         const data = await res.json();
         setProject(data);
       } catch (e) {

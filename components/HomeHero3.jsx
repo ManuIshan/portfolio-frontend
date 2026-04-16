@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import TrueFocus from "@/src/component/TrueFocus";
 import LogoLoop from "@/src/component/LogoLoop";
+import { API_URL } from "@/lib/api";
 import "./HomeHero3.css";
 
 import {
@@ -124,9 +125,9 @@ export default function HomeHero3() {
   const [cv, setCv] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/cv/")
+    fetch(`${API_URL}cv/`)
       .then(res => res.json())
-      .then(data => { if (data.length > 0) setCv(data[0]); })
+      .then(data => { if (Array.isArray(data) && data.length > 0) setCv(data[0]); })
       .catch(err => console.error(err));
   }, []);
 

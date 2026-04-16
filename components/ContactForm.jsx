@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { API_URL } from "@/lib/api";
 import "./ContactForm.css";
 
 export default function ContactForm() {
@@ -27,7 +28,7 @@ export default function ContactForm() {
     setStatus(null);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/contact/", {
+      const res = await fetch(`${API_URL}contact/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +58,7 @@ export default function ContactForm() {
       console.error("Contact form error:", error);
       setStatus({
         type: "error",
-        message: `Network error: ${error.message}. Make sure the backend server is running at http://127.0.0.1:8000`,
+        message: `Network error: ${error.message}. Make sure the backend is reachable via ${API_URL}`,
       });
     } finally {
       setLoading(false);

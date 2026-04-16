@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import TrueFocus from "@/src/component/TrueFocus";
+import { API_URL } from "@/lib/api";
 import "./AboutCompo1.css";
 
 function RevealText({ children }) {
@@ -85,7 +86,7 @@ export default function AboutCompo1() {
   const [cv, setCv] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/cv/")
+    fetch(`${API_URL}cv/`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) setCv(data[0]);

@@ -7,6 +7,7 @@ import StarBorder from "@/src/component/StarBorder";
 import "@/components/Projects/ProjectSection.css";
 import ContactHero from "@/components/ContactHero";
 import Footer from "@/components/Footer";
+import { API_URL } from "@/lib/api";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
@@ -16,7 +17,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/projects/");
+        const res = await fetch(`${API_URL}projects/`);
         const data = await res.json();
         setProjects(data);
       } catch (e) {

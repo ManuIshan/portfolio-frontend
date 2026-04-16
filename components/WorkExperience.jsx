@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { API_URL } from "@/lib/api";
 import "./WorkExperienceCompo2.css";
 
 function RevealText({ children }) {
@@ -77,7 +78,7 @@ export default function WorkExperienceCompo2() {
   const [experiences, setExperiences] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/experience/")
+    fetch(`${API_URL}experience/`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setExperiences(data);

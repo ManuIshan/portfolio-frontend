@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import TiltedCard from "@/src/component/TiltedCard";
 import StarBorder from "@/src/component/StarBorder";
+import { API_URL } from "@/lib/api";
 import "./ProjectSection.css";
 
 function RevealText({ children }) {
@@ -57,7 +58,7 @@ export default function ProjectsSection() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const res  = await fetch("http://127.0.0.1:8000/api/projects/?show_in_home=true");
+        const res  = await fetch(`${API_URL}projects/?show_in_home=true`);
         const data = await res.json();
         setProjects(data);
       } catch (e) {
