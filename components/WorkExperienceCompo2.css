@@ -1,0 +1,224 @@
+
+
+.we2 {
+  width: 100%;
+  background: #0b0b0b;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  padding: 100px 72px 120px 72px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Top bar ── */
+.we2-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.we2-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+}
+
+.we2-num {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Headline ── */
+.we2-headline-wrap {
+ width: 100%;
+  /* max-width: 900px; */
+  padding: 120px 160px 120px;
+ flex-direction: column;
+  text-align: flex-start;
+}
+
+.we2-headline {
+    
+  font-size:56px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.we2-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 28%;
+  box-sizing: border-box;
+}
+
+/* ── Each item ── */
+.we2-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.25s ease;
+}
+
+.we2-item:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.we2-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 36px 0 36px 36px;
+  cursor: pointer;
+  user-select: none;
+  gap: 40px;
+}
+
+.we2-item--open .we2-item-header {
+  padding-bottom: 0;
+}
+
+.we2-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.we2-item-role {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.we2-item-company {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.we2-item-num {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.25);
+  margin: 16px 0 0 0;
+  letter-spacing: 0.04em;
+}
+
+.we2-item-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  flex-shrink: 0;
+  padding-right: 36px;
+}
+
+.we2-item-period {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  padding-top: 4px;
+}
+
+.we2-item-toggle {
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+  display: inline-block;
+  padding-top: 2px;
+}
+
+.we2-item-toggle--open {
+  transform: rotate(45deg);
+  color: #fff;
+}
+
+.we2-item-body {
+  padding: 24px 36px 36px 36px;
+  animation: we2-expand 0.35s ease;
+}
+
+@keyframes we2-expand {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.we2-item-desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 680px;
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .we2 {
+    padding: 80px 48px 100px 48px;
+  }
+  .we2-list {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .we2 {
+    padding: 64px 32px 80px 32px;
+  }
+  .we2-headline-wrap {
+    padding: 50px 0;
+  }
+  .we2-headline {
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.2;  }
+  .we2-item-header {
+    padding: 28px 0 28px 20px;
+    gap: 20px;
+  }
+  .we2-item-right {
+    padding-right: 20px;
+    gap: 20px;
+  }
+  .we2-item-body {
+    padding: 16px 20px 28px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .we2 {
+    padding: 56px 20px 64px 20px;
+  }
+  .we2-headline-wrap {
+    padding: 30px 0;
+  }
+  .we2-headline {
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.2;  }
+  .we2-item-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 0 24px 0;
+  }
+  .we2-item-right {
+    padding-right: 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .we2-item-body {
+    padding: 12px 0 24px 0;
+  }
+}

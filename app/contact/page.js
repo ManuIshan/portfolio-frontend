@@ -1,22 +1,16 @@
 "use client";
 import dynamic from "next/dynamic";
-import Hero from "@/components/Hero";
-import HomeHero2 from "@/components/HomeHero2";
-import HomeHero3 from "@/components/HomeHero3";
-import ProjectsSection from "@/components/Projects/ProjectSection";
-import FAQ from "../components/FAQ";
-import ContactHero from "@/components/ContactHero";
+import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 const GradualBlur = dynamic(
   () => import("@/src/component/GradualBlur"),
   { ssr: false }
 );
- 
-export default function Home() {
+
+export default function Contact() {
   return (
-        <main style={{ position: "relative", overflow: "hidden" }}>
- 
+    <main style={{ position: "relative", overflow: "hidden" }}>
       <GradualBlur
         position="top"
         target="page"
@@ -27,7 +21,7 @@ export default function Home() {
         zIndex={999}
         opacity={1}
       />
- 
+
       <GradualBlur
         position="bottom"
         target="page"
@@ -39,15 +33,8 @@ export default function Home() {
         opacity={1}
       />
 
-      <Hero />
-      <HomeHero2 />
-      <ProjectsSection />
-      <HomeHero3 />
-      <FAQ/>
-      <ContactHero/>
-      
-      <Footer/>
-      
+      <ContactForm />
+      <Footer />
     </main>
   );
 }
